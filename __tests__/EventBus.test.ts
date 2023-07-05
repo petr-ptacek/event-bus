@@ -1,25 +1,62 @@
-import { describe, expect, it, vi } from "vitest";
-// import { EventBus }                 from "@/EventBus";
+import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from "vitest";
+import { EventBus }                                                   from "__test-source__";
 
-// type EventBusTypes = {
-//   "add": (a: number, b: number) => number;
-// };
+type EventBusTypes = {
+  sum: (a: number, b: number) => number;
+};
+
+let eb: EventBus<EventBusTypes> = new EventBus();
+let spySum: Mock = vi.fn();
 
 describe("EventBus", () => {
-  it("1 + 1", () => {
-    expect(1 + 1).toBe(2);
+
+  beforeEach(() => {
+    eb = new EventBus();
+
+    spySum = vi.fn();
+    spySum.mockImplementation((a, b) => a + b);
   });
 
-  // it("should ", () => {
-  //   const eb = new EventBus<EventBusTypes>();
-  //   const spy = vi.fn().mockImplementation(
-  //     (a: number, b: number) => {
-  //       expect(a).toBe(Number);
-  //       expect(b).toBe(Number);
-  //     }
-  //   );
-  //
-  //   eb.on("add", spy);
-  //   eb.emit("add", 1, 2);
-  // });
+  afterEach(() => {
+    spySum.mockReset();
+  });
+
+  it("Provided handler was called with arguments", () => {
+    eb.on("sum", spySum);
+
+    eb.emit("sum", 1, 1);
+
+    expect(spySum).toBeCalledTimes(1);
+    expect(spySum).toBeCalledWith(1, 1);
+  });
+
+  it("Provided handler was called only once", () => {
+
+    eb.once("sum", spySum);
+
+    eb.emit("sum", 1, 1);
+    expect(spySum).toBeCalledTimes(1);
+
+    eb.emit("sum", 2, 2);
+    expect(spySum).toBeCalledTimes(1);
+  });
+
+  it("Remove provided handler", () => {
+    eb.on("sum", spySum);
+
+    eb.emit("sum", 1, 1);
+    expect(spySum).toBeCalledTimes(1);
+
+    eb.off("sum", spySum);
+    expect(spySum).toBeCalledTimes(1);
+  });
+
+  it("Register same handlers only once", () => {
+    eb.on("sum", spySum);
+    eb.on("sum", spySum);
+
+    eb.emit("sum", 1, 2);
+
+    expect(spySum).toBeCalledTimes(1);
+  });
 });

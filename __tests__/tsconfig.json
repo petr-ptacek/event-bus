@@ -5,8 +5,8 @@
     "target": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "../src/*"
+      "__test-source__": [
+        "../src/main.ts"
       ]
     }
   }

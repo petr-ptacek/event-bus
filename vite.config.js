@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import { URL, fileURLToPath } from "node:url";
 import { defineConfig }       from "vite";
 
@@ -10,6 +12,12 @@ function filePath(path) {
 }
 
 export default defineConfig({
+  test: {
+    environment: "node",
+    alias: {
+      "__test-source__": filePath("./src/main.ts")
+    }
+  },
   build: {
     outDir: filePath("dist"),
     emptyOutDir: true,
