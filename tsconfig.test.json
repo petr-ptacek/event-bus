@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.options.json",
+  "compilerOptions": {
+    "composite": true
+  },
+  "include": [
+    "__tests__/**/*.test.ts"
+  ],
+  "references": [
+    {
+      "path": "tsconfig.app.json"
+    }
+  ]
+}

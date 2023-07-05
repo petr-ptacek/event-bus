@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from "vitest";
-import { EventBus }                                                   from "__test-source__";
+import { EventBus }                                                   from "../src/main";
 
 type EventBusTypes = {
   sum: (a: number, b: number) => number;

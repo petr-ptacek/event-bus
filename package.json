@@ -18,9 +18,10 @@
     "clean": "rimraf dist",
     "check:types": "tsc -p tsconfig.app.json --noEmit",
     "build:app": "vite build --config vite.config.js",
-    "build:types": "tsc -p tsconfig.app.json --declaration --emitDeclarationOnly --declarationMap --declarationDir dist/types",
-    "build": "npm-run-all -s clean check:types build:app build:types",
-    "test": "vitest"
+    "build:types": "tsc -p tsconfig.build-types.json && tsc-alias -p tsconfig.build-types.json",
+    "build": "npm-run-all -s clean check:types test build:app build:types",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.0",
@@ -30,6 +31,7 @@
     "tsc-alias": "^1.8.7",
     "typescript": "^5.1.6",
     "vite": "^4.3.9",
+    "vite-plugin-dts": "^3.0.3",
     "vitest": "^0.32.4"
   },
   "license": "MIT"

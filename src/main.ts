@@ -1,1 +1,1 @@
-export * from "./EventBus";
+export * from "@/EventBus";
