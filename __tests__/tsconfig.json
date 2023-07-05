@@ -1,0 +1,13 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "../src/*"
+      ]
+    }
+  }
+}

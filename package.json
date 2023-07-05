@@ -1,0 +1,35 @@
+{
+  "name": "@petr-ptacek/event-bus",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "main": "./dist/event-bus.umd.cjs",
+  "module": "./dist/event-bus.es.js",
+  "types": "./dist/types/main.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/main.d.ts",
+      "import": "./dist/event-bus.es.js",
+      "require": "./dist/event-bus.umd.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "check:types": "tsc -p tsconfig.app.json --noEmit",
+    "build:app": "vite build --config vite.config.js",
+    "build:types": "tsc -p tsconfig.app.json --declaration --emitDeclarationOnly --declarationMap --declarationDir dist/types",
+    "build": "npm-run-all -s clean check:types build:app build:types",
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.0",
+    "@types/node": "^18.16.19",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^5.0.1",
+    "tsc-alias": "^1.8.7",
+    "typescript": "^5.1.6",
+    "vite": "^4.3.9",
+    "vitest": "^0.32.4"
+  }
+}
