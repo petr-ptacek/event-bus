@@ -1,14 +1,19 @@
 {
   "extends": "./tsconfig.options.json",
   "compilerOptions": {
-    "composite": true
+    "composite": true,
+    "paths": {
+      ":event-bus": [
+        "./src/index.ts"
+      ]
+    }
   },
   "include": [
-    "__tests__/**/*.test.ts"
+    "**/*.test.ts"
   ],
   "references": [
     {
-      "path": "tsconfig.app.json"
+      "path": "./tsconfig.app.json"
     }
   ]
 }

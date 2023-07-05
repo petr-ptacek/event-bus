@@ -11,16 +11,16 @@ function filePath(path) {
 
 export default defineConfig({
   test: {
-    environment: "node"
-    // alias: {
-    //   "__test-source__": filePath("./src/main.ts")
-    // }
+    environment: "node",
+    alias: {
+      ":event-bus": filePath("./src/index.ts")
+    }
   },
   build: {
     outDir: filePath("dist"),
     emptyOutDir: true,
     lib: {
-      entry: filePath("src/main.ts"),
+      entry: filePath("src/index.ts"),
       name: "EventBus",
       fileName: (format) => `event-bus.${ format }.js`,
       formats: ["umd", "es"]

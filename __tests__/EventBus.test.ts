@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from "vitest";
-import { EventBus }                                                   from "../src/main";
+import { EventBus }                                                   from ":event-bus";
 
 type EventBusTypes = {
   sum: (a: number, b: number) => number;
