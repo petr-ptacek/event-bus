@@ -16,6 +16,9 @@
     "type": "git",
     "url": "https://github.com/petr-ptacek/event-bus.git"
   },
+  "files": [
+    "dist"
+  ],
   "private": false,
   "main": "./dist/event-bus.umd.cjs",
   "module": "./dist/event-bus.es.js",
