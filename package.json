@@ -5,10 +5,10 @@
   "private": true,
   "main": "./dist/event-bus.umd.cjs",
   "module": "./dist/event-bus.es.js",
-  "types": "./dist/types/main.d.ts",
+  "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/main.d.ts",
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/event-bus.es.js",
       "require": "./dist/event-bus.umd.js"
     },
